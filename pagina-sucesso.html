@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mah e Ga</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('./img/fundo.jpg');
+
+            margin: 0;
+            padding: 0;
+            color: #333;
+            height: 100vh;
+        }
+        h1 {
+            color: #000000;
+            font-size: 3em;
+        }
+        .contador {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+        .imagem-centralizada {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="imagem-centralizada">
+        <img src="img/fotinha.jpeg" alt="Imagem Centralizada" width="210"> <!-- Ajuste o tamanho da imagem -->
+    </div>
+    <h1>Tempo Juntos</h1>
+    <div class="contador" id="contador">
+        Calculando...
+    </div>
+
+    <script>
+        function atualizarContador() {
+            // Data inicial
+            const dataInicial = new Date("2024-08-12T00:00:00");
+            
+            // Data e hora atuais
+            const agora = new Date();
+            
+            // Diferença em milissegundos
+            const diferenca = agora - dataInicial;
+            
+            // Cálculos de dias, horas, minutos e segundos
+            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+            
+            // Atualiza o conteúdo da página
+            document.getElementById("contador").textContent = 
+                `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+        }
+
+        // Atualiza o contador a cada segundo
+        setInterval(atualizarContador, 1000);
+
+        // Executa a função imediatamente na inicialização
+        atualizarContador();
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f3f3;
+        }
+        form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="formulario" onsubmit="return validarFormulario(event)">
+        <label for="primeiro-nome">Primeiro Nome:</label>
+        <input type="text" id="primeiro-nome" placeholder="Digite seu primeiro nome">
+        <span id="erro-primeiro-nome" class="error"></span>
+
+        <label for="segundo-nome">Segundo Nome:</label>
+        <input type="text" id="segundo-nome" placeholder="Digite seu segundo nome">
+        <span id="erro-segundo-nome" class="error"></span>
+
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" placeholder="Digite sua idade">
+        <span id="erro-idade" class="error"></span>
+
+        <label for="beleza">Nível de Beleza (0 a 10):</label>
+        <input type="number" id="beleza" placeholder="Digite de 0 a 10" min="0" max="10">
+        <span id="erro-beleza" class="error"></span>
+
+
+        <label for="senha">Senha:</label>
+        <input type="number" id="senha" placeholder="Digite a senha">
+        <span id="erro-senha" class="error"></span>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        function validarFormulario(event) {
+            // Impede o envio do formulário caso haja erros
+            event.preventDefault();
+
+            // Captura os valores dos campos
+            const primeiroNome = document.getElementById("primeiro-nome").value.trim();
+            const segundoNome = document.getElementById("segundo-nome").value.trim();
+            const idade = document.getElementById("idade").value.trim();
+            const beleza = document.getElementById("beleza").value.trim();
+            const senha = document.getElementById("senha").value.trim();
+
+            // Referências às mensagens de erro
+            const erroPrimeiroNome = document.getElementById("erro-primeiro-nome");
+            const erroSegundoNome = document.getElementById("erro-segundo-nome");
+            const erroIdade = document.getElementById("erro-idade");
+            const erroBeleza = document.getElementById("erro-beleza");
+            const erroSenha = document.getElementById("erro-senha");
+
+            // Limpa mensagens anteriores
+            erroPrimeiroNome.textContent = "";
+            erroSegundoNome.textContent = "";
+            erroIdade.textContent = "";
+            erroBeleza.textContent = "";
+            erroSenha.textContent = "";
+
+            let valido = true;
+
+            // Validação do campo "Primeiro Nome"
+            if (primeiroNome.toLowerCase() !== "maria") {
+                erroPrimeiroNome.textContent = "Nome errado!!!";
+                valido = false;
+            }
+
+            // Validação do campo "Segundo Nome"
+            if (segundoNome.toLowerCase() !== "clara") {
+                erroSegundoNome.textContent = "Errou!!!";
+                valido = false;
+            }
+
+            // Validação do campo "Idade"
+            if (idade !== "20") {
+                erroIdade.textContent = "Ta chapando é";
+                valido = false;
+            }
+
+            // Validação do campo "Nível de Beleza"
+            if (beleza !== "10") {
+                erroBeleza.textContent = "O nível de beleza é 10, né vida?";
+                valido = false;
+            }
+            if (senha !== "589132"){
+                erroSenha.textContent = "Senha incorreta!!!";
+                valido = false;
+            }
+
+            // Se o formulário for válido, redireciona para outra página
+            if (valido) {
+                window.location.href = "pagina-sucesso.html";
+            }
+
+            // Retorna falso para impedir o envio do formulário
+            return valido;
+        }
+    </script>
+</body>
+</html>
